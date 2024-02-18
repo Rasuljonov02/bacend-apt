@@ -8,6 +8,11 @@ export namespace Auth {
     firsname: string;
     curent: string;
     total: string;
+    soat:string;
     deckripshing: string;
+  }
+  export interface logIn {
+    email: string;
+    password: string;
   }
 }

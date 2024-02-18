@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { Qosh, data, deleteResource } from "./auth/auth1";
+import { Qosh, data, deleteResource, logIn } from "./auth/auth1";
 import { Auth } from "./auth/types";
-import { faker } from "@faker-js/faker";
 
 const app = express();
 app.use(cors());
@@ -11,6 +10,10 @@ app.use(express.json());
 app.get("/", (req: any, res: any) => {
   const sa = { ...data };
   res.send(sa);
+});
+app.post("/login", (req: any, res: any) => {
+  const loginInfo = logIn(req.body);
+  res.send(loginInfo);
 });
 
 app.delete("/del/:id", (req: any, res: any) => {
