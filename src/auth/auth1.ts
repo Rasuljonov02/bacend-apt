@@ -33,15 +33,13 @@ export function logIn(data1: Auth.logIn) {
 
   if (tekshir) {
     const token = generateToken(tekshir);
-    return { user: tekshir, token };
+    return { user: { ...tekshir, token } };
   }
 
   return "chiqmadi";
 }
-  
-
 
 function generateToken(user: any) {
-  const token = jwt.sign({ Id: user.id, name: user.name }, secretKey);
+  const token = jwt.sign({ Id: user.id, lastname: user.lastname }, secretKey);
   return token;
 }

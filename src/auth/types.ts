@@ -15,4 +15,5 @@ export namespace Auth {
     email: string;
     password: string;
   }
+  
 }
