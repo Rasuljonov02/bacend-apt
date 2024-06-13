@@ -21,6 +21,7 @@ comfi-prod.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log\*
+bun.lockb
 
 # Local Netlify folder
 .netlify

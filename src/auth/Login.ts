@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Auth } from "./types";
+import { Auth } from "../types";
 
 
 const AuthSchema = new mongoose.Schema<Auth.logIn>({
