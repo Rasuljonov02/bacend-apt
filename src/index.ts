@@ -1,20 +1,27 @@
 import express from "express";
 import cors from "cors";
-import { Qosh, data, deleteResource, logIn } from "./auth/auth1";
-import { Auth } from "./auth/types";
+import {  data, deleteResource } from "./auth/auth1";
+import {connect} from "./db";
+import {login} from "./auth/auth";
+import {User} from "./auth/user";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+connect()
 app.get("/", (req: any, res: any) => {
   const sa = { ...data };
   res.send(sa);
 });
-app.post("/login", (req: any, res: any) => {
-  const loginInfo = logIn(req.body);
-  res.send(loginInfo);
+app.post("/login", async (req: any, res: any) => {
+  const user = await User.findOne({ email: req.body.email });
+  console.log(req.body);
+  if (!user) return res.status(400).send({ data: null, message: "Invalid username or password" });
+
+  res.send({ data: user, message: null });
 });
+
+
 
 app.delete("/del/:id", (req: any, res: any) => {
   const id = req.params.id;
@@ -26,13 +33,21 @@ app.delete("/del/:id", (req: any, res: any) => {
   }
 });
 
-app.post("/auth", (req: any, res: any) => {
-  const newData: Auth.Personam = req.body;
+app.post("/auth", async (req: any, res: any) => {
+  const { name, email, password } = req.body;
 
-  const ares = Qosh(newData);
+  let user = await User.findOne({ email: email });
+  if (user) {
+    return res.status(400).send({ data: null, message: `${email} username already exists` });
+  }
 
-  res.json(ares);
+  user = new User({ name, email, password });
+  await user.save();
+
+  res.send({ data: user, message: null });
 });
+
+
 
 const PORT = 4000;
 app.listen(PORT, () => console.log(`🦊 Listening on port ${PORT}...`));

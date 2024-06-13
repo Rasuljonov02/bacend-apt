@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { faker } from "@faker-js/faker";
-import { Auth } from "./types";
+import {Auth} from "./types";
 
 export const data: any[] = [];
 
@@ -13,7 +13,7 @@ export function deleteResource(id: any) {
   return false;
 }
 
-export function Qosh(data1: Auth.Personam) {
+export function Qosh(data1: Auth.Register) {
   const newPersonam = data.find((item) => item.email === data1.email);
 
   if (!newPersonam) {
