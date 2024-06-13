@@ -22,6 +22,9 @@ export namespace QuizApp{
         c: string;
     }
 
-
+    export interface  AddUserQuiz{
+        correctanswer: string;
+        quizId: string;
+    }
 }
 

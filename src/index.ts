@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import {connect} from "./db";
-import {Auth, quiz} from "./routes";
+import {addquiz, Auth, quiz} from "./routes";
 
 
 const app = express();
@@ -10,6 +10,8 @@ app.use(express.json());
 
 app.use("/api/auth", Auth);
 app.use("/api/quiz", quiz);
+app.use("/api/addquizid", addquiz);
+
 
 connect()
 
