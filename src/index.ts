@@ -10,8 +10,7 @@ app.use(express.json());
 
 app.use("/api/auth", Auth);
 app.use("/api/quiz", quiz);
-app.use("/api/addquizid", addquiz);
-
+app.use("/api/adduserquiz", addquiz);
 
 connect()
 

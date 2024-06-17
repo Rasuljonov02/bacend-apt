@@ -25,6 +25,7 @@ export namespace QuizApp{
     export interface  AddUserQuiz{
         correctanswer: string;
         quizId: string;
+        userId?: string;
     }
 }
 
